@@ -10,12 +10,20 @@ const HomeScreen = (props) => {
     <View
       style={{
         backgroundColor: '#F1EFE3',
+        // backgroundColor: '#fff9ed',
       }}
     >
-      <View style={{ marginBottom: 45 }}>
-        <Feed navigation={props.navigation} />
-      </View>
+      {/* <View style={{ marginBottom: 45 }}> */}
+      <Feed navigation={props.navigation} />
+      {/* </View> */}
+      {/* <View
+        style={{
+          borderTopRightRadius: 10,
+          borderTopLeftRadius: 10,
+        }}
+      > */}
       <BelowNavigation navigation={props.navigation} />
+      {/* </View> */}
     </View>
   );
 };

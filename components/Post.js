@@ -1,6 +1,8 @@
 import React from 'react';
-import { Button, Image, StyleSheet, Text, View, Dimensions } from 'react-native';
-import { TouchableOpacity } from 'react-native-web';
+import { useContext } from 'react';
+import { Image, StyleSheet, Text, View, Dimensions, Alert, TouchableOpacity } from 'react-native';
+import { UserContext } from '../contexts/user';
+import { db, storage } from '../firebaseConfig';
 
 const win = Dimensions.get('window');
 
@@ -29,29 +31,104 @@ export default function Post({
   comments,
   navigation,
 }) {
+  const [user, setUser] = useContext(UserContext);
+
+  var displayDelete = false;
+  var currentUser = null;
+  const postUserChecker = () => {
+    if (user) {
+      currentUser = user.email.replace('@gmail.com', '');
+    }
+    if (currentUser === username && currentUser !== null) {
+      displayDelete = true;
+    }
+  };
+  postUserChecker();
+
+  const showAlert = () => {
+    Alert.alert(
+      'Delete Post!',
+      'Are you sure you want to delete this post?',
+      [
+        {
+          text: 'Cancel',
+
+          style: 'cancel',
+        },
+        {
+          text: 'Ok',
+          onPress: () => {
+            deletePost();
+          },
+          style: 'default',
+        },
+      ],
+      {
+        cancelable: true,
+        onDismiss: () =>
+          Alert.alert('This alert was dismissed by tapping outside of the alert dialog.'),
+      },
+    );
+  };
+  const deletePost = () => {
+    //delete the image from firebase storage
+
+    //get reference to the image file we like to delete
+    var imageRef = storage.refFromURL(photoUrl);
+
+    //delete the file
+    imageRef
+      .delete()
+      .then(function () {
+        console.log('delete successfull');
+      })
+      .catch(function (error) {
+        console.log(`Error delete${error}`);
+      });
+
+    //2 delete the post info from firbase firestore
+    db.collection('posts')
+      .doc(id)
+      .delete()
+      .then(function () {
+        console.log('delete successfull from firebase');
+      })
+      .catch(function (error) {
+        console.log(`Error post info delete from firebase ${error}`);
+      });
+  };
+
   return (
     <View>
       <View
         style={{
           flexDirection: 'row',
-          flexWrap: 'wrap',
           alignItems: 'center',
           paddingHorizontal: 10,
           paddingVertical: 5,
         }}
       >
-        <Image
-          style={styles.profile}
-          source={{
-            uri: `${profileUrl}`,
-          }}
-        />
-        <Text>{username}</Text>
         <TouchableOpacity
-          onPress={}
-          >
-          <Text>Delete</Text>
+          onPress={() => navigation.navigate('UserProfileScreen', { username, profileUrl })}
+        >
+          <Image
+            style={styles.profile}
+            source={{
+              uri: `${profileUrl}`,
+            }}
+          />
         </TouchableOpacity>
+
+        <TouchableOpacity
+          onPress={() => navigation.navigate('UserProfileScreen', { username, profileUrl })}
+        >
+          <Text>{username}</Text>
+        </TouchableOpacity>
+        {displayDelete && (
+          <TouchableOpacity style={{ marginLeft: 'auto' }} onPress={showAlert}>
+            <Text>Delete</Text>
+          </TouchableOpacity>
+        )}
       </View>
 
       <Image
@@ -60,7 +137,7 @@ export default function Post({
           uri: `${photoUrl}`,
         }}
       />
-      
+
       <View style={{ flexDirection: 'row' }}>
         <Text style={{ fontWeight: 'bold' }}>{username} </Text>
         <Text>{caption}</Text>

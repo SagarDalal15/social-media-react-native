@@ -108,7 +108,7 @@ export default function CreatePostScreen(props) {
           <View
             style={{
               flex: 1,
-              backgroundColor: 'grey',
+              backgroundColor: 'wheat',
             }}
           >
             {isPreview && (

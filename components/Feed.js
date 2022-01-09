@@ -79,6 +79,7 @@ export default function Feed(props) {
             </View>
           );
         })}
+        <View style={{ height: 45 }}></View>
       </ScrollView>
     </View>
   );
