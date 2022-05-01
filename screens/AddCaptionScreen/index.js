@@ -1,13 +1,13 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Image, Text, TextInput, View } from "react-native";
+import React, { useContext, useEffect, useState } from 'react';
+import { Image, StyleSheet, Text, TextInput, View } from 'react-native';
 
-import { UserContext } from "../../contexts/user";
-import makeid from "../../helper/functions";
-import { db, storage } from "../../firebaseConfig";
-import firebase from "firebase";
+import { UserContext } from '../../contexts/user';
+import makeid from '../../helper/functions';
+import { db, storage } from '../../firebaseConfig';
+import firebase from 'firebase';
 
 export default function AddCaptionScreen(props) {
-  const [caption, setCaption] = useState("");
+  const [caption, setCaption] = useState('');
   const [progress, setProgress] = useState(0);
   const [user, setUser] = useContext(UserContext);
   const [image, setImage] = useState();
@@ -23,29 +23,25 @@ export default function AddCaptionScreen(props) {
   }, []);
 
   useEffect(() => {
-    if (progress === 100 && caption === "" && image === null) {
-      props.navigation.navigate("HomeScreen");
+    if (progress === 100 && caption === '' && image === null) {
+      props.navigation.navigate('HomeScreen');
     }
   }, [progress, image, caption]);
 
   const handleUpload = async () => {
     if (image) {
       var metadata = {
-        contentType: "image/jpeg",
+        contentType: 'image/jpeg',
       };
 
       var imageName = makeid(10);
-      const uploadTask = storage
-        .ref(`images/${imageName}.jpg`)
-        .put(image, metadata);
+      const uploadTask = storage.ref(`images/${imageName}.jpg`).put(image, metadata);
       uploadTask.on(
-        "state_changed",
+        'state_changed',
         (snapshot) => {
           //progress function
 
-          const progress = Math.round(
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-          );
+          const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
           setProgress(progress);
         },
         (error) => {
@@ -54,36 +50,36 @@ export default function AddCaptionScreen(props) {
         () => {
           //get download url and upload the post info
           storage
-            .ref("images")
+            .ref('images')
             .child(`${imageName}.jpg`)
             .getDownloadURL()
             .then((imageUrl) => {
-              db.collection("posts").add({
+              db.collection('posts').add({
                 timestamp: firebase.firestore.Timestamp.now(),
                 caption: caption,
                 photoUrl: imageUrl,
-                username: user.email.replace("@gmail.com", ""),
+                username: user.email.replace('@gmail.com', ''),
                 profileUrl: user.photoURL
                   ? user.photoURL
-                  : "https://firebasestorage.googleapis.com/v0/b/reactsocialapptutorial.appspot.com/o/images%2Fblank-profile.webp?alt=media&token=d749fb07-d371-4927-b3d7-ac16abd31c9e",
+                  : 'https://firebasestorage.googleapis.com/v0/b/reactsocialapptutorial.appspot.com/o/images%2Fblank-profile.webp?alt=media&token=d749fb07-d371-4927-b3d7-ac16abd31c9e',
               });
             });
-          setCaption("");
+          setCaption('');
           setImage(null);
-        }
+        },
       );
     }
   };
 
   return (
-    <View>
+    <View style={{ backgroundColor: '#C7925C', height: '100%' }}>
       <Image
         style={{
-          width: "100%",
+          width: '100%',
           height: undefined,
           aspectRatio: 1 / 1,
-          resizeMode: "contain",
-          backgroundColor: "white",
+          resizeMode: 'contain',
+          backgroundColor: 'white',
         }}
         source={{
           uri: props.route.params.img,
@@ -91,11 +87,31 @@ export default function AddCaptionScreen(props) {
       />
 
       <TextInput
+        style={styles.textInput}
         value={caption}
         onChangeText={setCaption}
-        placeholder="Add Caption"
+        placeholder="Add Caption..."
       />
-      <Text onPress={handleUpload}>Post{progress}</Text>
+
+      <Text style={styles.text} onPress={handleUpload}>
+        Post {progress}
+        {'%'}
+      </Text>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  text: {
+    fontSize: 24,
+    fontWeight: '700',
+    margin: 10,
+    marginTop: '14%',
+    color: 'white',
+    alignSelf: 'center',
+  },
+  textInput: {
+    padding: 10,
+    backgroundColor: 'wheat',
+  },
+});

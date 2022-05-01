@@ -173,10 +173,10 @@ export default function LoginScreen(props) {
 
         <View style={styles.twoButton}>
           <View style={{ margin: 5 }}>
-            <Button onPress={signUpButtonHandler} title="Sign Up"></Button>
+            <Button onPress={signUpButtonHandler} title="       Sign Up        "></Button>
           </View>
           <View style={{ margin: 5 }}>
-            <Button onPress={signInButtonHandler} title="Sign In"></Button>
+            <Button onPress={signInButtonHandler} title="       Sign In      "></Button>
           </View>
         </View>
 
@@ -221,7 +221,7 @@ const styles = StyleSheet.create({
 
   twoButton: {
     width: '70%',
-    justifyContent: 'flex-end',
+    justifyContent: 'center',
     flexDirection: 'row',
   },
   gButtonView: {

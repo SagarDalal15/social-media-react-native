@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View } from 'react-native';
 
 import RequireAuth from '../../RequireAuth';
 import Feed from '../../components/Feed';
 import BelowNavigation from '../../components/BelowNavigation';
+import { db } from '../../firebaseConfig';
 
 const HomeScreen = (props) => {
   return (
     <View
       style={{
         backgroundColor: '#F1EFE3',
+        // backgroundColor: 'wheat',
         // backgroundColor: '#fff9ed',
       }}
     >

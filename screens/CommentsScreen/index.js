@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import {
   Button,
   Dimensions,
@@ -9,14 +9,14 @@ import {
   TextInput,
   TouchableOpacity,
   View,
-} from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import Comment from "../../components/Comment";
-import { UserContext } from "../../contexts/user";
-import { db } from "../../firebaseConfig";
+} from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import Comment from '../../components/Comment';
+import { UserContext } from '../../contexts/user';
+import { db } from '../../firebaseConfig';
 
 export default function CommentsScreen({ route }) {
-  const [comment, setComment] = useState("");
+  const [comment, setComment] = useState('');
   const [user, setUser] = useContext(UserContext);
 
   const [allComments, setAllComments] = useState([]);
@@ -31,28 +31,28 @@ export default function CommentsScreen({ route }) {
 
     return () => {
       setAllComments([]);
-      setComment("");
+      setComment('');
     };
   }, []);
 
   const addComment = () => {
-    if (comment !== "") {
+    if (comment !== '') {
       //add comment to the post info
 
       commentArray.push({
         comment: comment,
-        username: user.email.replace("@gmail.com", "").toLowerCase(),
+        username: user.email.replace('@gmail.com', '').toLowerCase(),
       });
 
-      setComment("");
+      setComment('');
       // Add comment to database
-      db.collection("posts")
+      db.collection('posts')
         .doc(route.params.id)
         .update({
           comments: commentArray,
         })
         .then(function () {
-          console.log("comment added");
+          console.log('comment added');
 
           // // get all comments and set to AllComments
           // db.collection("posts")
@@ -94,9 +94,9 @@ export default function CommentsScreen({ route }) {
       </ScrollView>
       <View
         style={{
-          position: "absolute",
-          width: "100%",
-          backgroundColor: "white",
+          position: 'absolute',
+          width: '100%',
+          backgroundColor: 'white',
           bottom: 0,
         }}
       >
@@ -113,12 +113,13 @@ export default function CommentsScreen({ route }) {
         <TouchableOpacity onPress={addComment}>
           <Text
             style={{
-              color: "white",
-              textAlign: "center",
-              paddingVertical: 14,
-              width: "100%",
-              backgroundColor: "blue",
-              fontSize: 18,
+              color: 'white',
+              textAlign: 'center',
+              paddingVertical: 12,
+              width: '100%',
+              backgroundColor: '#C7925C',
+              fontSize: 22,
+              fontWeight: 'bold',
             }}
           >
             Post

@@ -7,6 +7,16 @@ import { db, storage } from '../firebaseConfig';
 const win = Dimensions.get('window');
 
 const styles = StyleSheet.create({
+  username: {
+    fontSize: 18,
+  },
+  caption: {
+    fontSize: 18,
+  },
+  delete: {
+    fontSize: 18,
+    color: 'white',
+  },
   photo: {
     width: '100%',
     height: undefined,
@@ -122,11 +132,21 @@ export default function Post({
         <TouchableOpacity
           onPress={() => navigation.navigate('UserProfileScreen', { username, profileUrl })}
         >
-          <Text>{username}</Text>
+          <Text style={styles.username}>{username}</Text>
         </TouchableOpacity>
         {displayDelete && (
-          <TouchableOpacity style={{ marginLeft: 'auto' }} onPress={showAlert}>
-            <Text>Delete</Text>
+          <TouchableOpacity
+            style={{
+              marginLeft: 'auto',
+              // backgroundColor: '#C7925C',
+              backgroundColor: 'green',
+              borderRadius: 12,
+              padding: 7,
+              paddingVertical: 4,
+            }}
+            onPress={showAlert}
+          >
+            <Text style={styles.delete}>Delete</Text>
           </TouchableOpacity>
         )}
       </View>
@@ -139,12 +159,12 @@ export default function Post({
       />
 
       <View style={{ flexDirection: 'row' }}>
-        <Text style={{ fontWeight: 'bold' }}>{username} </Text>
-        <Text>{caption}</Text>
+        <Text style={{ fontWeight: 'bold', fontSize: 18 }}>{username} </Text>
+        <Text style={styles.caption}>{caption}</Text>
       </View>
 
       <Text
-        style={{ paddingTop: 5, paddingBottom: 12, color: 'grey' }}
+        style={{ paddingTop: 5, paddingBottom: 12, color: 'grey', fontSize: 18 }}
         onPress={() => navigation.navigate('CommentsScreen', { id, comments })}
       >
         View all comments

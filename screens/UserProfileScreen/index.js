@@ -35,9 +35,11 @@ export default function MyProfileScreen(props) {
         style={{
           marginVertical: 25,
           backgroundColor: '#FFE4C4',
-          width: '60%',
+          width: '80%',
+          lineHeight: 24,
           borderRadius: 8,
           padding: 10,
+          fontSize: 18,
           paddingVertical: 12,
         }}
       >

@@ -120,24 +120,47 @@ export default function CreatePostScreen(props) {
                   alignItems: 'center',
                 }}
               >
-                <Text
+                <TouchableOpacity
                   onPress={cancelPreview}
                   style={{
-                    fontSize: 18,
-                    color: 'white',
+                    width: 80,
+                    paddingVertical: 10,
+                    alignItems: 'center',
+                    backgroundColor: 'black',
+                    borderRadius: 12,
                   }}
                 >
-                  Cancel
-                </Text>
-                <Text
+                  <Text
+                    style={{
+                      color: 'white',
+                      fontSize: 20,
+                      fontWeight: 'bold',
+                    }}
+                  >
+                    Cancel
+                  </Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
                   onPress={postImage}
                   style={{
-                    fontSize: 18,
-                    color: 'white',
+                    width: 80,
+                    paddingVertical: 10,
+                    alignItems: 'center',
+                    backgroundColor: 'green',
+                    borderRadius: 12,
                   }}
                 >
-                  Post
-                </Text>
+                  <Text
+                    style={{
+                      color: 'white',
+                      fontSize: 20,
+                      fontWeight: 'bold',
+                    }}
+                  >
+                    Post
+                  </Text>
+                </TouchableOpacity>
               </View>
             )}
             {!isPreview && (

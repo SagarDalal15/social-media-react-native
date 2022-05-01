@@ -70,9 +70,11 @@ export default function MyProfileScreen() {
         style={{
           marginVertical: 25,
           backgroundColor: 'white',
-          width: '60%',
+          width: '80%',
+          lineHeight: 24,
           borderRadius: 8,
           padding: 10,
+          fontSize: 18,
         }}
         editable
         multiline
@@ -82,14 +84,14 @@ export default function MyProfileScreen() {
       />
       <TouchableOpacity
         style={{
-          backgroundColor: 'grey',
+          backgroundColor: '#C7925C',
           borderRadius: 5,
-          paddingHorizontal: 16,
-          paddingVertical: 6,
+          paddingHorizontal: 25,
+          paddingVertical: 8,
         }}
         onPress={saveBio}
       >
-        <Text style={{ color: 'white', fontSize: 18 }}>Save</Text>
+        <Text style={{ color: 'white', fontSize: 22, fontWeight: 'bold' }}>Save</Text>
       </TouchableOpacity>
     </View>
   );

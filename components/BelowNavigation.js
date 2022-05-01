@@ -6,7 +6,7 @@ export default function BelowNavigation(props) {
     <View
       style={{
         position: 'absolute',
-        height: 45,
+        height: 50,
         bottom: 0,
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -15,7 +15,7 @@ export default function BelowNavigation(props) {
 
         borderTopRightRadius: 10,
         borderTopLeftRadius: 10,
-        backgroundColor: 'lightblue',
+        backgroundColor: '#C7925C',
       }}
     >
       <TouchableOpacity
@@ -31,7 +31,7 @@ export default function BelowNavigation(props) {
         }}
         onPress={() => props.navigation.navigate('CreatePostScreen')}
       >
-        <Text>Create Post</Text>
+        <Text style={{ fontSize: 18, fontWeight: 'bold', color: 'black' }}>Create Post</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={{
@@ -46,7 +46,7 @@ export default function BelowNavigation(props) {
         }}
         onPress={() => props.navigation.navigate('MyProfileScreen')}
       >
-        <Text>Go to Profile</Text>
+        <Text style={{ fontSize: 18, color: 'white', fontWeight: 'bold' }}>Go to Profile</Text>
       </TouchableOpacity>
     </View>
   );
