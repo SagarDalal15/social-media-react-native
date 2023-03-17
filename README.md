@@ -1,8 +1,8 @@
 # social-media-react-native
 <p float="left">
-<img width="200" alt="image" src="https://user-images.githubusercontent.com/74422938/225987712-1bf87c1c-86f3-4e98-8e31-c00783e53f19.png">
-<img width="225" alt="image" src="https://user-images.githubusercontent.com/74422938/225982180-d8c5fc48-72a8-4df4-b9b0-3524cf8063d4.png">
-<img width="215" alt="image" src="https://user-images.githubusercontent.com/74422938/225982138-3cc92906-9555-44e9-b8c7-c672c1b35e82.png">
+<img width="195" alt="image" src="https://user-images.githubusercontent.com/74422938/225987712-1bf87c1c-86f3-4e98-8e31-c00783e53f19.png">
+<img width="223" alt="image" src="https://user-images.githubusercontent.com/74422938/225982180-d8c5fc48-72a8-4df4-b9b0-3524cf8063d4.png">
+<img width="223" alt="image" src="https://user-images.githubusercontent.com/74422938/225982138-3cc92906-9555-44e9-b8c7-c672c1b35e82.png">
 </p>
 <p float="left">
 <img width="223" alt="image" src="https://user-images.githubusercontent.com/74422938/225982098-322d0b4a-3735-4883-a85d-b3b2be1ccee7.png">
