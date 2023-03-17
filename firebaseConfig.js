@@ -1,12 +1,12 @@
 import firebase from "firebase";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBps2dAYpBCMSfkSp9Pb9g0uB8B4uavrpo",
-  authDomain: "reactsocialapptutorial.firebaseapp.com",
-  projectId: "reactsocialapptutorial",
-  storageBucket: "reactsocialapptutorial.appspot.com",
+  apiKey: "API_KEY",
+  authDomain: "xyz.firebaseapp.com",
+  projectId: "xyz",
+  storageBucket: "xyz.appspot.com",
   messagingSenderId: "1071064469720",
-  appId: "1:1071064469720:web:d8358c841243c084c447ad",
+  appId: "1:1071064469720:web:d8358c841243c084c417ad",
 };
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
